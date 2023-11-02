@@ -1,15 +1,12 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Firstnonrepeatingcharacterinastream {
 
     public static void main(String[] args){
         int[] a=new int[] {4,-16,43,4,7,-36,18};
-        String  string="aabc";
+        String  string="wwpyedwrebkbvmvkvvesansqszwtrknvehhgdiqnhietykcgujlclwgyluryjfiaeelhefputiuxtbaedbtlzegpwhmiloosqefh";
         System.out.println(result(string));
 
     }
@@ -19,29 +16,37 @@ public class Firstnonrepeatingcharacterinastream {
       // result=result+string.charAt(0);
         //Input: A = "aabc"
         //Output: "a#bb"
-        String lastNonRepeatedChar="";
-        HashSet<Character> nr= new HashSet();
-        List<Character> nrList= new ArrayList<>();
         HashSet<Character> r= new HashSet();
-        char l =string.charAt(0);
+        Queue<Character> nrq = new  LinkedList<>();
+       // valueQueue.peek()
+
+       // System.out.println(valueQueue.toString());
+     //   valueQueue.remove('b');
+       // System.out.println(valueQueue.toString());
+
         for(int i=0 ;i<string.length();i++){
-            if(nr.contains(string.charAt(i))){
-                nr.remove(string.charAt(i));
-                r.add(string.charAt(i));
-                if(nr.isEmpty())
-                    l='#';
+            if(nrq.contains(string.charAt(i))){
+                nrq.remove(string.charAt(i));
+                if(!r.contains(string.charAt(i))){
+                    r.add(string.charAt(i));
+                }
+                if(nrq.isEmpty())
+                    result=result+"#";
                 else
-                    l= [0];
-                if(!lastNonRepeatedChar.equals(string.charAt(i)))
+                    result=result+nrq.peek();
             }else {
-                if(lastNonRepeatedChar.equals(""))
-                    lastNonRepeatedChar=""+string.charAt(i);
-                if(!lastNonRepeatedChar.equals(string.charAt(i)))
-                valueMap.add(string.charAt(i));
-                result=result+lastNonRepeatedChar;
-
+                if(!r.contains(string.charAt(i)))
+                    nrq.add(string.charAt(i));
+                result=result+nrq.peek();
             }
-
+            try{
+        if(nrq!=null && nrq.peek()=='m'){
+            System.out.println(i);
+        }}
+            catch(NullPointerException e)
+            {
+                System.out.print("NullPointerException Caught");
+            }
 
         }
 
