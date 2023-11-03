@@ -7,7 +7,6 @@ public class zeroSumSubarrays {
         System.out.println(result2(a,10));
 
     }
-
     private static int result(int arr[], int N) {  //---> O(n)
 
         HashMap<Integer,Integer> m = new HashMap<>();
