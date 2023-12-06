@@ -1,4 +1,7 @@
 import java.util.*;
+
+import static jdk.nashorn.internal.objects.NativeArray.sort;
+
 public class tripletsSumZero {
 
         public static void main(String[] args){
@@ -17,9 +20,9 @@ public class tripletsSumZero {
                     System.out.println("0");
 
             }*/
-            int[] a=new int[] {4,-16,43,4,7,-36,18};
+            int[] a=new int[] {97,-27,2,-34,61,-39};
            // findTripletsHashMap(a,5);
-            if(findTripletsHashMap(a,7))
+            if(findTripletsHashMap(a,6))
                 System.out.println("1");
             else
                 System.out.println("0");
@@ -40,22 +43,43 @@ public class tripletsSumZero {
     }
     public  static boolean findTripletsHashMap(int arr[] , int n)
     {
-        //add code here.
-        //brute force O(n3)
-        HashMap<Integer, Integer> valueMap= new HashMap<>();
-        //using HashMaps O(n2)
+//        //add code here.
+//        //brute force O(n3)
+//        Set<Integer> valueMap= new HashSet<>();
+//        //using HashMaps O(n2)
+//        Boolean found = false;
+//        for (int i=0 ; i<n-1 ;i++) {
+//            for (int j = i + 1; j < n ; j++) {
+//                if (valueMap.contains((arr[i] + arr[j]) * -1)) {
+//                    found = true;
+//                    break;
+//                } else {
+//                    valueMap.add((arr[j]));
+//                }
+//            }
+//            if (found) break;
+//        }
+        Arrays.sort(arr);
+
         Boolean found = false;
-        for (int i=0 ; i<n-1 ;i++) {
-            for (int j = i + 1; j < n ; j++) {
-                if (valueMap.containsKey((arr[i] + arr[j]) * -1)) {
-                    found = true;
-                    break;
-                } else {
-                    valueMap.put(((arr[j])), 1);
+        for(int i=0 ;i<n-1 ;i++){
+            int l=i+1;
+            int r=n-1;
+            int sum=0;
+            while(l<r){
+                sum=arr[i]+arr[l]+arr[r];
+                if(arr[i]+arr[l]+arr[r]==0)
+                    return true;
+                else if (arr[i]+arr[l]+arr[r]<0)
+                {
+                    l++;
                 }
+                else r--;
             }
-            if (found) break;
         }
+
+
+
         return found;
     }
 }
